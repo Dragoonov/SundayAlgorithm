@@ -142,8 +142,6 @@ def get_algorithm_data(data, var, algorithm):
             text_size.append(len(data[1][i]))
         elif var == 'W':
             text_size.append(len(data[2][i]))
-    #text_size.sort()
-    #total_comp.sort()
     return [text_size, total_comp]
 
 
