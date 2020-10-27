@@ -1,17 +1,20 @@
 import random
 import matplotlib.pyplot as plt
-import numpy as np
 
 # Predefined constants
-A = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l']
-lastp = {'a': -1, 'b': -1, 'c': -1, 'd': -1, 'e': -1, 'f': -1, 'g': -1, 'h': -1, 'i': -1, 'j': -1, 'k': -1, 'l': -1}
+A = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+     'n', 'o', 'p', 'r', 's', 't', 'u', 'w', 'x', 'y', 'z']
+lastp = {'a': -1, 'b': -1, 'c': -1, 'd': -1, 'e': -1, 'f': -1, 'g': -1, 'h': -1, 'i': -1,
+         'j': -1, 'k': -1, 'l': -1, 'm': -1, 'n': -1, 'o': -1, 'p': -1, 'r': -1, 's': -1,
+         't': -1, 'u': -1, 'w': -1, 'x': -1, 'y': -1, 'z': -1}
 Tsize = 20
 Wsize = 3
-TminSize = 5
-TmaxSize = 20
+TminSize = 30
+TmaxSize = 50
 WminSize = 1
-WmaxSize = 5
-data_amount = 20
+WmaxSize = 9
+minAlphabetSize = 5
+data_amount = 50
 
 #####################
 # Global variables
@@ -73,7 +76,7 @@ def prepare_data(var):
 
 def generate_random_alphabet():
     alphabet = A.copy()
-    result_alphabet_size = random.randrange(1, len(alphabet))
+    result_alphabet_size = random.randrange(1, len(alphabet)-minAlphabetSize)
     for i in range(result_alphabet_size):
         index = random.randrange(0, len(alphabet))
         alphabet.remove(alphabet[index])
@@ -139,8 +142,8 @@ def get_algorithm_data(data, var, algorithm):
             text_size.append(len(data[1][i]))
         elif var == 'W':
             text_size.append(len(data[2][i]))
-    text_size.sort()
-    total_comp.sort()
+    #text_size.sort()
+    #total_comp.sort()
     return [text_size, total_comp]
 
 
@@ -148,8 +151,8 @@ def show_data(var):
     datas = prepare_data(var)
     naive = get_algorithm_data(datas, var, 'N')
     sunday = get_algorithm_data(datas, var, 'S')
-    plt.plot(naive[0], naive[1], label="Naiwny")
-    plt.plot(sunday[0], sunday[1], label="Sundaya")
+    plt.scatter(naive[0], naive[1], label="Naiwny")
+    plt.scatter(sunday[0], sunday[1], label="Sundaya")
     if var == 'A':
         plt.xlabel("Dlugosc alfabetu")
     elif var == 'T':
